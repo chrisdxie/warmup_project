@@ -1,18 +1,10 @@
 WarmupProject::Application.routes.draw do
 
-  get "users/login"
+  match 'users/login', 	to: 'site#login', 	via: :post
+  match 'users/add', 	to: 'site#add', 	via: :post
 
-  get "users/add"
-
-  get "users/resetFixture"
-
-  get "users/unitTests"
-
-  match 'users/login', 	to: 'users#login', 	via: :post
-  match 'users/add', 	to: 'users#add', 	via: :post
-
-  match 'TESTAPI/resetFixture', to: 'users#resetFixture', via: :post
-  match 'TESTAPI/unitTests', 	to: 'users#unitTests', 	via: :post
+  match 'TESTAPI/resetFixture', to: 'site#resetFixture', via: :post
+  match 'TESTAPI/unitTests', 	to: 'site#unitTests', 	via: :post
 
 
   # The priority is based upon order of creation:
