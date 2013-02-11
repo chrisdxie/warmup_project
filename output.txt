@@ -16,6 +16,6 @@ Success!
 Success!
 .
 
-Finished tests in 0.120103s, 8.3262 tests/s, 0.0000 assertions/s.
+Finished tests in 0.098688s, 10.1329 tests/s, 0.0000 assertions/s.
 
 1 tests, 0 assertions, 0 failures, 0 errors, 0 skips

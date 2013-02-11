@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-include SiteHelper
+#include SiteHelper
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
