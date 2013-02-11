@@ -40,7 +40,7 @@ class SiteController < ApplicationController
 	# Erase this file it already exists
 	system("rm output.txt")
 	# Run the tests, write to output file
-	system("rake test:units > output.txt")
+	system("ruby -Itest test/unit/user_test.rb > output.txt")
 	# Read in the file, capture what you need
 	totalTests = 0
 	nrFailed = 0
@@ -53,7 +53,7 @@ class SiteController < ApplicationController
 	  elsif content.include?("Number failed")
 		nrFailed = Integer(content.split(":")[1])
 	  elsif content.include?("Success!") or content.include?("Failure...")
-		output += content + "\n"
+		output += "\n" + content
 	  end
 	end
 
