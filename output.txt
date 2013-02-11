@@ -4,18 +4,18 @@ Run options:
 
 Total tests: 10
 Number failed: 0
-Success!
-Success!
-Success!
-Success!
-Success!
-Success!
-Success!
-Success!
-Success!
-Success!
+Success! Login of unregistered credentials fails
+Success! Login of registered credentials succeeds
+Success! Already registered username returns correct error code
+Success! Blank username returns correct error code
+Success! Username more than 128 ASCII characters returns correct error code
+Success! Password more than 128 ASCII characters returns correct error code
+Success! Username and Password blank, returns error code
+Success! Adding valid credentials succeeds
+Success! resetFixture() method returns SUCCESS code
+Success! resetFixture() method deletes all rows from db
 .
 
-Finished tests in 0.129091s, 7.7465 tests/s, 0.0000 assertions/s.
+Finished tests in 0.128503s, 7.7819 tests/s, 0.0000 assertions/s.
 
 1 tests, 0 assertions, 0 failures, 0 errors, 0 skips

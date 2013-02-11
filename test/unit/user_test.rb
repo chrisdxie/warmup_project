@@ -26,7 +26,7 @@ class UserTest < ActiveSupport::TestCase
 	errCode = @model.login('me', 'foobar') # hasn't been added to db
 	#assert_equal(ERR_BAD_CREDENTIALS, errCode)
 	if ERR_BAD_CREDENTIALS == errCode
-	  return "Success!"
+	  return "Success! Login of unregistered credentials fails"
 	end
 	return "Failure..."
   end
@@ -35,7 +35,7 @@ class UserTest < ActiveSupport::TestCase
 	errCode = @model.login('foo', 'baz') # Already loaded
 	#assert_equal(2, errCode)
 	if 2 == errCode
-	  return "Success!"
+	  return "Success! Login of registered credentials succeeds"
 	end
 	return "Failure..."
   end
@@ -45,7 +45,7 @@ class UserTest < ActiveSupport::TestCase
 	errCode = @model.add('foo', 'nopassword') # Already in the test db
 	#assert_equal(ERR_USER_EXISTS, errCode)
 	if ERR_USER_EXISTS == errCode
-	  return "Success!"
+	  return "Success! Already registered username returns correct error code"
 	end
 	return "Failure..."
   end
@@ -54,7 +54,7 @@ class UserTest < ActiveSupport::TestCase
 	errCode = @model.add('  ', 'password') # Blank username
 	#assert_equal(ERR_BAD_USERNAME, errCode)
 	if ERR_BAD_USERNAME == errCode
-	  return "Success!"
+	  return "Success! Blank username returns correct error code"
 	end
 	return "Failure..."
   end
@@ -63,7 +63,7 @@ class UserTest < ActiveSupport::TestCase
 	errCode = @model.add('a'*129, 'password') # Username too long
 	#assert_equal(ERR_BAD_USERNAME, errCode)
 	if ERR_BAD_USERNAME == errCode
-	  return "Success!"
+	  return "Success! Username more than 128 ASCII characters returns correct error code"
 	end
 	return "Failure..."
   end
@@ -72,7 +72,7 @@ class UserTest < ActiveSupport::TestCase
 	errCode = @model.add('asdf', 'd'*129) # Password too long
 	#assert_equal(ERR_BAD_PASSWORD, errCode)
 	if ERR_BAD_PASSWORD == errCode
-	  return "Success!"
+	  return "Success! Password more than 128 ASCII characters returns correct error code"
 	end
 	return "Failure..."
   end
@@ -81,7 +81,7 @@ class UserTest < ActiveSupport::TestCase
 	errCode = @model.add('', '') # Both blank, should return ERR_BAD_USERNAME (for my app)
 	#assert_equal(ERR_BAD_USERNAME, errCode)
 	if ERR_BAD_USERNAME == errCode
-	  return "Success!"
+	  return "Success! Username and Password blank, returns error code"
 	end
 	return "Failure..."
   end
@@ -90,7 +90,7 @@ class UserTest < ActiveSupport::TestCase
 	errCode = @model.add('user2', 'pass2') # Should return success
 	#assert_equal(SUCCESS, errCode)
 	if SUCCESS == errCode
-	  return "Success!"
+	  return "Success! Adding valid credentials succeeds"
 	end
 	return "Failure..."
   end
@@ -100,7 +100,7 @@ class UserTest < ActiveSupport::TestCase
 	errCode = @model.TESTAPI_resetFixture
 	#assert_equal(SUCCESS, errCode)
 	if SUCCESS == errCode
-	  return "Success!"
+	  return "Success! resetFixture() method returns SUCCESS code"
 	end
 	return "Failure..."
   end
@@ -109,7 +109,7 @@ class UserTest < ActiveSupport::TestCase
 	@model.TESTAPI_resetFixture
 	#assert_equal(User.count, 0) # Number of db rows should be 0
 	if User.count == 0
-	  return "Success!"
+	  return "Success! resetFixture() method deletes all rows from db"
 	end
 	return "Failure..."
   end
