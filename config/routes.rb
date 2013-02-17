@@ -1,5 +1,7 @@
 WarmupProject::Application.routes.draw do
 
+  root to: 'site#new'
+
   match 'users/login', 	to: 'site#login', 	via: :post
   match 'users/add', 	to: 'site#add', 	via: :post
 

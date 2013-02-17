@@ -2,14 +2,19 @@ class SiteController < ApplicationController
 
   respond_to :json
 
+  def new
+	# Just render login.html.erb
+	render :login
+  end
+
   def login
 	@model = User.new()	
 
-	errCode = @model.login(params[:user], params[:password])
-	if errCode <= 0
-	  resp = { errCode: errCode }
+	@errCode = @model.login(params[:user], params[:password])
+	if @errCode <= 0
+	  resp = { errCode: @errCode }
 	else #success!
-	  resp = { errCode: SUCCESS, count: errCode }
+	  resp = { errCode: SUCCESS, count: @errCode }
 	end
 	render json: resp
 
@@ -18,11 +23,11 @@ class SiteController < ApplicationController
   def add
 	@model = User.new()
 
-	errCode = @model.add(params[:user], params[:password])
-	if errCode == SUCCESS
+	@errCode = @model.add(params[:user], params[:password])
+	if @errCode == SUCCESS
 	  resp = { errCode: SUCCESS, count: 1 }
 	else
-	  resp = { errCode: errCode }
+	  resp = { errCode: @errCode }
 	end
 	render json: resp
 
@@ -30,8 +35,8 @@ class SiteController < ApplicationController
 
   def resetFixture
 	@model = User.new()
-	errCode = @model.TESTAPI_resetFixture
-	resp = { errCode: errCode }
+	@errCode = @model.TESTAPI_resetFixture
+	resp = { errCode: @errCode }
 	render json: resp
   end
 
@@ -40,7 +45,10 @@ class SiteController < ApplicationController
 	# Erase this file it already exists
 	system("rm output.txt")
 	# Run the tests, write to output file
-	system("ruby -Itest test/unit/user_test.rb > output.txt")
+	x = system("ruby -Itest test/unit/user_test.rb > output.txt")
+	if not x
+	  raise Exception
+	end
 	# Read in the file, capture what you need
 	totalTests = 0
 	nrFailed = 0

@@ -1,2 +1,34 @@
-<h1>Site#login</h1>
-<p>Find me in app/views/site/login.html.erb</p>
+<h1>
+Warmup Project: Front End
+</h1>
+
+<div class="row login">
+  <div>
+	<p align="center" id="message-box">Please enter your credentials below</p>
+	<div class="center">
+	<form class="form-horizontal">
+	  <div class="control-group">
+		<label class="control-label">Username:</label>
+		<div class="controls">
+		  <input id="username" type="text" name="user" class="input-xlarge"/>
+		</div>
+	  </div>
+	  <div class="control group">
+		<label class="control-label">Password:</label>
+		<div class="controls">
+		  <input id="user-password" type="password" name="password" class="input-xlarge"/>
+		</div>
+	  </div>
+	  <div align="center" class="buttons">
+	  <input type="button" value="Login" class="btn btn-primary" onClick="login_user()"/>
+	  <input type="button" value="Add User" class="btn btn-primary" onClick="add_user()"/>	
+	  </div>
+	</form>
+	</div>
+  </div>
+</div>
+
+<div class="welcome-message center">
+<p>Welcome <span id="user">blank</span>, you have logged in <span id="num_logins">blank</span> times!</p>
+<input type="button" value="Logout" class="btn btn-primary" onClick="logout()">
+</div>
