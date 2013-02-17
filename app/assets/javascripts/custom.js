@@ -61,6 +61,7 @@ function add_user () {
 };
 
 function logout() {
+	$('#message-box').html('Please enter your credentials below');
 	$('#username').val('');
 	$('#user-password').val('');
 	$('.welcome-message').hide();
