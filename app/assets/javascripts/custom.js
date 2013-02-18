@@ -13,7 +13,7 @@ $('document').ready(function () {
 });
 
 
-// When the login button is clicked
+// When the login button is clicked, send with AJAX request
 function login_user () {
 	var data = {'user': $('#username').val(), 'password': $('#user-password').val()};
 	$.ajax({
@@ -22,6 +22,7 @@ function login_user () {
 		data: data,
 		dataType: 'json',
 		success: function(response) {
+			// If successful, hide the login and show the welcome. Update fields as necessary
 			if (response.errCode == SUCCESS) {
 				$('.login').hide();
 				$('#num_logins').html(response.count);
@@ -44,6 +45,7 @@ function add_user () {
 		data: data,
 		dataType: 'json',
 		success: function(response) {
+			// Return messages depending on the error code
 			if (response.errCode == SUCCESS) {
 				$('.login').hide();
                 $('#num_logins').html(response.count);
@@ -60,6 +62,7 @@ function add_user () {
 	});
 };
 
+// This function resets the page
 function logout() {
 	$('#message-box').html('Please enter your credentials below');
 	$('#username').val('');

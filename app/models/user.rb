@@ -21,8 +21,11 @@ class User < ActiveRecord::Base
   def login(name, password)
 	
 	user = User.find_by_user(name)
+	
+	# User hasn't been found in db
 	if user.nil?
 	  return ERR_BAD_CREDENTIALS
+	# User has been found, but password doesn't match up
 	elsif user.password != password
 	  return ERR_BAD_CREDENTIALS
 	end
@@ -41,7 +44,7 @@ class User < ActiveRecord::Base
 	  return ERR_USER_EXISTS
 	end
 
-	# Name constraints	
+	# Username constraints	
 	if name.blank? or name.length > MAX_USERNAME_LENGTH
 	  return ERR_BAD_USERNAME
 	end
@@ -57,6 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def TESTAPI_resetFixture
+	# Delete all rows in table, resetting db
 	User.delete_all
 	return SUCCESS
   end

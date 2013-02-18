@@ -8,12 +8,13 @@ class SiteController < ApplicationController
   end
 
   def login
+	# Create an instance of the User model, and call the login method
 	@model = User.new()	
 
 	@errCode = @model.login(params[:user], params[:password])
-	if @errCode <= 0
+	if @errCode <= 0 # Not successful
 	  resp = { errCode: @errCode }
-	else #success!
+	else # Success!
 	  resp = { errCode: SUCCESS, count: @errCode }
 	end
 	render json: resp
@@ -21,6 +22,7 @@ class SiteController < ApplicationController
   end
 
   def add
+	# Create an instance of the User model and call the add method
 	@model = User.new()
 
 	@errCode = @model.add(params[:user], params[:password])
@@ -34,6 +36,7 @@ class SiteController < ApplicationController
   end
 
   def resetFixture
+	# Create an instance of the User model, and reset the db by calling the resetFixture method
 	@model = User.new()
 	@errCode = @model.TESTAPI_resetFixture
 	resp = { errCode: @errCode }
@@ -46,10 +49,11 @@ class SiteController < ApplicationController
 	system("rm output.txt")
 	# Run the tests, write to output file
 	x = system("ruby -Itest test/unit/user_test.rb > output.txt")
+	# If it fails, throw an Exception
 	if not x
 	  raise Exception
 	end
-	# Read in the file, capture what you need
+	# Parse the file for it's contents
 	totalTests = 0
 	nrFailed = 0
 	output = ""
